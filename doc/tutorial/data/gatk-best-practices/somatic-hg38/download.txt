@@ -1,0 +1,5 @@
+#!/bin/bash
+wget https://storage.googleapis.com/gatk-best-practices/somatic-hg38/hcc1143_N_clean.bai
+wget https://storage.googleapis.com/gatk-best-practices/somatic-hg38/hcc1143_N_clean.bam
+wget https://storage.googleapis.com/gatk-best-practices/somatic-hg38/hcc1143_T_clean.bam
+wget https://storage.googleapis.com/gatk-best-practices/somatic-hg38/hcc1143_T_clean.bai

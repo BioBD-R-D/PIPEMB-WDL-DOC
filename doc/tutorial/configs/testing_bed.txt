@@ -1,0 +1,111 @@
+001_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_.json
+
+cd /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/execution
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm  /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr1g1_SM_F1_jn0s0pn0v1f1/001_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_.json
+
+workflow-158766.out
+
+OK
+
+===========================================================
+002_workflow_INCA_pr1g0jn0s1pn1v1f1pp.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm  /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr1g0jn0s1pn1v1f1_panel/002_workflow_INCA_pr1g0jn0s1pn1v1f1pp.json
+
+ok-da error no final, cant not imput format, pq no encuentra variantes
+
+ok- ya no da error com a soluçao do VEP--GOOD!!!
+
+
+
+===========================================================
+003_workflow_INCA_pr1g0jn0s1pn1v1f1p_no panel que da error de memoria
+
+
+===========================================================
+004-workflow_INCA_pr0s0pn0v0f1pp_germline.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm  /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s0pn0v0f1_pp/004-workflow_INCA_pr0s0pn0v0f1pp_germline.json
+
+OK
+
+==========================================================
+005-workflow_INCA_pr0s0pn0v1f0_germline.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm  /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s0pn0v1f0/005-workflow_INCA_pr0s0pn0v1f0_germline.json
+
+
+OK
+
+===========================================================
+COMMIT OK
+===========================================================
+
+006_workflow_INCA_pr0g0jn0s1pn1v1f1pp_scatter_somatic.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s1pn1v1f1_nopanel/006_workflow_INCA_pr0g0jn0s1pn1v1f1pp_scatter_somatic.json
+
+Cambie nombre despues pq no estaba usando pon, entonces paso a ser 0
+006_workflow_INCA_pr0g0jn0s1pn1v1f1pp_scatter_somatic.json
+
+OKKKKKKK!!!! GOOD, NUEVO DATASET
+============================================================
+
+007_workflow_INCA_pr0g0jn0s1pn0v0f1_scatter_somatic_hardfiltering.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s1pn0v0f1_nopanel_hardfiltering/007_workflow_INCA_pr0g0jn0s1pn0v0f1_scatter_somatic_hardfiltering.json
+
+OK
+===========================
+
+008_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_hardfiltering.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr1g1_SM_F1_jn0s0pn0v1f1_panel_hardfiltering/008_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_hardfiltering.json
+
+filtro todo, nao gerou variantes ao final, e vep deu error
+
+-NO DEU ERROR COM A NOVA IMPLEMENTAÇAO DO VEP
+
+===========================
+009_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS.json
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s0pn0v1f1_noPASS_germ/009_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS.json
+
+dio error no vep  [First 3000 bytes]:ERROR: Can't detect input format
+porque variantes vacia, por cuenta del intervalo passado en  "VariantStudy_INCA_v1.germline_intervals_list": "/data04/tools/PIPEMB/homologacao/References/intervals/arquivoBED_hg38_example.bed",
+
+============================
+
+009_1_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s0pn0v1f1_noPASS_germ/009_1_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS.json
+
+sem interval_list
+OK
+============================
+
+010_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS_som.json
+
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL_test.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr0g0jn0s0pn0v1f1_noPASS_som/010_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS_som.json
+
+
+
+
+
+
+test somatic (006-pr0g0jn0s1pn0v1f1_nopanel)
+
+test hard-filtering para somatic (007-pr0g0jn0s1pn0v0f1_nopanel_hardfiltering) e germline (pr1g1_SM_F1_jn0s0pn0v1f1_panel_hardfiltering/008_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_hardfiltering.json)
+
+test no pass (pr0g0jn0s0pn0v1f1_noPASS_germ/009_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS.json, pr0g0jn0s0pn0v1f1_noPASS_som/010_workflow_INCA_pr0g0jn0s0pn0v1f1pp_noPASS_som.json )
+
+
+
+test de performance
+
+Actualizar versao h19 do json
+
+COMMITAR NO FINAL new tests
+
+
+

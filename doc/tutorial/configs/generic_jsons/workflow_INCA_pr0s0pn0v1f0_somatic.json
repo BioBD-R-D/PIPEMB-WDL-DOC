@@ -1,0 +1,19 @@
+{
+  "VariantStudy_INCA_v1.output_dir": "path to output directory",
+  "VariantStudy_INCA_v1.reference_file": "/data04/tools/PIPEMB/homologacao/References/hg38bundle/PIPEMB-WDL-resources_Crab_hg38.json",
+  "VariantStudy_INCA_v1.input_is_multisample": true/false,
+  "VariantStudy_INCA_v1.do_preprocessing": false,
+  
+  "VariantStudy_INCA_v1.input_preprocessed_vcf_list_for_somatic_vep": "file contains a vcf list of files to be analyzed",
+  "VariantStudy_INCA_v1.somatic_output_vcf_compressed": false/true according to the vcf files listed in the input_preprocessed_vcf_list_for_somatic_vep,
+
+
+  "VariantStudy_INCA_v1.somatic_annot_with_vep": true,
+  "VariantStudy_INCA_v1.somatic_vep_offline_execution": true,
+  "VariantStudy_INCA_v1.somatic_vep_dir_cache":"/data04/tools/PIPEMB/homologacao/vep_cache",
+  "VariantStudy_INCA_v1.somatic_vep_dir_cache_sing":"/cromwell-executions/vep_cache",
+  "VariantStudy_INCA_v1.somatic_vep_assembly_name":"GRCh38",
+  "VariantStudy_INCA_v1.somatic_vep_input_suffix":".vcf.gz",
+  "VariantStudy_INCA_v1.somatic_vep_extra_args":"--check_existing --symbol --regulatory --sift b --polyphen b --uniprot --hgvs --numbers --domains --canonical --biotype --uniprot --tsl --gene_phenotype --af --af_1kg --af_esp --af_gnomad --pubmed --variant_class --species homo_sapiens --failed 1 --appris --biotype",
+}
+

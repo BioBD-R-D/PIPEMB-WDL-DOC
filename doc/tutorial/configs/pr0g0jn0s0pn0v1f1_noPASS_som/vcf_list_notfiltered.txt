@@ -1,0 +1,1 @@
+/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/006/somatic_vcfs/hcc1143_T_clean-filtered.vcf

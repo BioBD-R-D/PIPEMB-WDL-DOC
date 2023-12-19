@@ -1,0 +1,36 @@
+{
+  "VariantStudy_INCA_v1.output_dir": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/003",
+  "VariantStudy_INCA_v1.reference_file": "/data04/tools/PIPEMB/homologacao/References/hg38bundle/PIPEMB-WDL-resources_Crab_hg38.json",
+  "VariantStudy_INCA_v1.input_is_multisample": true,
+  
+  "VariantStudy_INCA_v1.flowcell_unmapped_input_tsv": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/data/gatk-test-data/wgs-fastq/NA12878_20k/NA12878_20k_input_data_TN.tsv",
+  "VariantStudy_INCA_v1.inputs_directory": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/data/gatk-test-data/wgs-fastq/NA12878_20k/",
+  "VariantStudy_INCA_v1.input_is_fastq": true,
+  "VariantStudy_INCA_v1.input_is_pairend": true,
+  "VariantStudy_INCA_v1.execute_mark_adaptors": true,
+
+  "VariantStudy_INCA_v1.execute_with_spark": false,
+
+  "VariantStudy_INCA_v1.do_somatic_short_variant_discovering": true,
+  "VariantStudy_INCA_v1.somatic_scatter_count": 15,
+  "VariantStudy_INCA_v1.somatic_m2_extra_args": "--downsampling-stride 20 --max-reads-per-alignment-start 6 --max-suspicious-reads-per-alignment-start 6",
+  "VariantStudy_INCA_v1.somatic_all_samples_tumor": false,
+
+  "VariantStudy_INCA_v1.somatic_pon":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/M2PoN_4.0_WGS_for_public.vcf",
+  "VariantStudy_INCA_v1.somatic_pon_idx":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/M2PoN_4.0_WGS_for_public.vcf.idx",
+
+  "VariantStudy_INCA_v1.somatic_annot_with_vep": true,
+  "VariantStudy_INCA_v1.somatic_vep_offline_execution": true,
+  "VariantStudy_INCA_v1.somatic_vep_dir_cache":"/data04/tools/PIPEMB/homologacao/vep_cache",
+  "VariantStudy_INCA_v1.somatic_vep_dir_cache_sing":"/cromwell-executions/vep_cache",
+  "VariantStudy_INCA_v1.somatic_vep_assembly_name":"GRCh38",
+  "VariantStudy_INCA_v1.somatic_vep_input_suffix":".vcf.gz",
+  "VariantStudy_INCA_v1.somatic_vep_extra_args":"--check_existing --symbol --regulatory --sift b --polyphen b --uniprot --hgvs --numbers --domains --canonical --biotype --uniprot --tsl --gene_phenotype --af --af_1kg --af_esp --af_gnomad --pubmed --variant_class --species homo_sapiens --failed 1 --appris --biotype --mane --ccds --transcript_version --flag_pick_allele_gene --show_ref_allele",
+
+  "VariantStudy_INCA_v1.somatic_annot_with_funcotator": true,
+  "VariantStudy_INCA_v1.somatic_annot_with_funcotator_add_allsamples": true,
+  "VariantStudy_INCA_v1.somatic_annot_with_funcotator_add_maf": true,
+  "VariantStudy_INCA_v1.somatic_funco_reference_version":"hg38",
+  "VariantStudy_INCA_v1.somatic_funco_dir_cache":"/data04/tools/PIPEMB/homologacao/fucotator_source_2020/funcotator_dataSources.v1.6.20190124s"
+
+}

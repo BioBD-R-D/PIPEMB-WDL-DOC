@@ -1,0 +1,35 @@
+{
+  "VariantStudy_INCA_v1.output_dir": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/rna/003",
+  "VariantStudy_INCA_v1.reference_file": "/data04/tools/PIPEMB/homologacao/References/Homo_sapiens_assembly19_1000genomes_decoy/PIPEMB-WDL-resources_Crab_hg19_rna.json",
+  "VariantStudy_INCA_v1.flowcell_unmapped_input_tsv": "/data04/projects04/MarianaBoroni/workflow/data/samples/ubams/rna/NA12878_rna_input_data.tsv",
+
+  "VariantStudy_INCA_v1.rna_seq_analysis": true,
+  "VariantStudy_INCA_v1.rna_seq_analysis_annotationsGTF": "/data04/tools/PIPEMB/homologacao/References/Homo_sapiens_assembly19_1000genomes_decoy/intervals/star.gencode.v19.transcripts.patched_contigs.gtf",
+  "VariantStudy_INCA_v1.rna_zippedStarReferences":"/data04/projects04/MarianaBoroni/workflow/data/samples/ubams/rna/star-HUMAN-refs.tar.gz",
+  "VariantStudy_INCA_v1.rna_splitncigar_temp_dir":"/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TESTING/execution/outputs/helloworld/preprocessing_rna/fixed_splitcigar",
+
+  "VariantStudy_INCA_v1.input_is_multisample": false,
+  "VariantStudy_INCA_v1.input_is_fastq": false,
+  "VariantStudy_INCA_v1.input_is_pairend": false,
+  "VariantStudy_INCA_v1.execute_with_spark": false,
+
+
+  "VariantStudy_INCA_v1.do_germline_short_variant_discovering": true,
+  "VariantStudy_INCA_v1.germline_single_sample_mode": true,
+  "VariantStudy_INCA_v1.germline_is_gene_panel": true,
+
+  "VariantStudy_INCA_v1.germline_annot_with_vep": true,
+  "VariantStudy_INCA_v1.germline_vep_offline_execution": true,
+  "VariantStudy_INCA_v1.germline_vep_dir_cache":"/data04/tools/PIPEMB/homologacao/vep_cache",
+  "VariantStudy_INCA_v1.germline_vep_dir_cache_sing":"/cromwell-executions/vep_cache",
+  "VariantStudy_INCA_v1.germline_vep_assembly_name":"GRCh38",
+  "VariantStudy_INCA_v1.germline_vep_input_suffix":".vcf.gz",
+  "VariantStudy_INCA_v1.germline_vep_extra_args":"--check_existing --symbol --regulatory --sift b --polyphen b --uniprot --hgvs --numbers --domains --canonical --biotype --uniprot --tsl --gene_phenotype --af --af_1kg --af_esp --af_gnomad --pubmed --variant_class --species homo_sapiens --failed 1 --appris --biotype",
+
+  "VariantStudy_INCA_v1.germline_annot_with_funcotator": true,
+  "VariantStudy_INCA_v1.germline_annot_with_funcotator_add_allsamples": true,
+  "VariantStudy_INCA_v1.germline_annot_with_funcotator_add_maf": true,
+  "VariantStudy_INCA_v1.germline_funco_reference_version":"hg38",
+  "VariantStudy_INCA_v1.germline_funco_dir_cache":"/data04/tools/PIPEMB/homologacao/fucotator_source_2020/funcotator_dataSources.v1.6.20190124s"
+
+}

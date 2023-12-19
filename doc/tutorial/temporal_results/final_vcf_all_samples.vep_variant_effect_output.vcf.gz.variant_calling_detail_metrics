@@ -1,0 +1,11 @@
+## htsjdk.samtools.metrics.StringHeader
+# CollectVariantCallingMetrics --INPUT /cromwell-executions/VariantStudy_INCA_v1/2a213b6b-ff62-42df-905d-b3b34027a2da/call-variantsEvaluation/shard-0/variantsEvaluation/5ea17148-6a64-471d-b8df-618ef8ddd3c4/call-CollectVariantCallingMetrics/inputs/-1175146700/final_vcf_all_samples.vep_variant_effect_output.vcf.gz --OUTPUT final_vcf_all_samples.vep_variant_effect_output.vcf.gz --DBSNP /cromwell-executions/VariantStudy_INCA_v1/2a213b6b-ff62-42df-905d-b3b34027a2da/call-variantsEvaluation/shard-0/variantsEvaluation/5ea17148-6a64-471d-b8df-618ef8ddd3c4/call-CollectVariantCallingMetrics/inputs/497750659/Homo_sapiens_assembly38.dbsnp138.vcf --SEQUENCE_DICTIONARY /cromwell-executions/VariantStudy_INCA_v1/2a213b6b-ff62-42df-905d-b3b34027a2da/call-variantsEvaluation/shard-0/variantsEvaluation/5ea17148-6a64-471d-b8df-618ef8ddd3c4/call-CollectVariantCallingMetrics/inputs/497750659/Homo_sapiens_assembly38.dict --THREAD_COUNT 8 --GVCF_INPUT false --VERBOSITY INFO --QUIET false --VALIDATION_STRINGENCY STRICT --COMPRESSION_LEVEL 2 --MAX_RECORDS_IN_RAM 500000 --CREATE_INDEX false --CREATE_MD5_FILE false --GA4GH_CLIENT_SECRETS client_secrets.json --help false --version false --showHidden false --USE_JDK_DEFLATER false --USE_JDK_INFLATER false
+## htsjdk.samtools.metrics.StringHeader
+# Started on: Wed Jun 28 04:24:10 GMT 2023
+
+## METRICS CLASS	picard.vcf.CollectVariantCallingMetrics$VariantCallingDetailMetrics
+SAMPLE_ALIAS	HET_HOMVAR_RATIO	PCT_GQ0_VARIANTS	TOTAL_GQ0_VARIANTS	TOTAL_HET_DEPTH	TOTAL_SNPS	NUM_IN_DB_SNP	NOVEL_SNPS	FILTERED_SNPS	PCT_DBSNP	DBSNP_TITV	NOVEL_TITV	TOTAL_INDELS	NOVEL_INDELS	FILTERED_INDELS	PCT_DBSNP_INDELS	NUM_IN_DB_SNP_INDELS	DBSNP_INS_DEL_RATIO	NOVEL_INS_DEL_RATIO	TOTAL_MULTIALLELIC_SNPS	NUM_IN_DB_SNP_MULTIALLELIC	TOTAL_COMPLEX_INDELS	NUM_IN_DB_SNP_COMPLEX_INDELS	SNP_REFERENCE_BIAS	NUM_SINGLETONS
+H06JUADXX130110	0.032389	0	0	45	475	349	126	0	0.734737	1.908333	1	33	10	0	0.69697	23	1.3	0.25	1	0	0	0	0.355556	15
+H06HDADXX130110	0.03	0	0	95	842	587	255	0	0.69715	1.891626	1.217391	83	16	0	0.807229	67	1.030303	0.230769	2	0	0	0	0.378947	25
+
+

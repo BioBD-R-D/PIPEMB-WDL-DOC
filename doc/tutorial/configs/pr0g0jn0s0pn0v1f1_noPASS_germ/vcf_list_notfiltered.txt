@@ -1,0 +1,2 @@
+/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/001/germline_vcfs/H06HDADXX130110.hg38.vcf.gz
+/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/001/germline_vcfs/H06JUADXX130110.hg38.vcf.gz

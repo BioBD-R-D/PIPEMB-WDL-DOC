@@ -1,0 +1,16 @@
+{
+  "VariantStudy_INCA_v1.output_dir": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/rna/001/02",
+  "VariantStudy_INCA_v1.reference_file": "/data04/tools/PIPEMB/homologacao/References/hg38bundle/PIPEMB-WDL-resources_Crab_hg38.json",
+
+  "VariantStudy_INCA_v1.input_is_multisample": false,
+  "VariantStudy_INCA_v1.rna_seq_analysis": true,
+
+  "VariantStudy_INCA_v1.flowcell_unmapped_input_tsv": "/data04/projects04/MarianaBoroni/workflow/data/samples/ubams/rna/NA12878_rna_input_data.tsv",
+  "VariantStudy_INCA_v1.input_is_fastq": false,
+  "VariantStudy_INCA_v1.input_is_pairend": false,
+  "VariantStudy_INCA_v1.execute_with_spark": false,
+  "VariantStudy_INCA_v1.rna_seq_analysis_annotationsGTF": "/home/earmas/lbbc_members/data/reference/gencode.v43.chr_patch_hapl_scaff.basic.annotation.gtf",
+  "VariantStudy_INCA_v1.rna_splitncigar_temp_dir":"/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TESTING/execution/outputs/helloworld/preprocessing_rna/fixed_splitcigar",
+  "VariantStudy_INCA_v1.rna_zippedStarReferences":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/star_reference_v43_gencode/star-HUMAN-refs.tar.gz"
+
+}

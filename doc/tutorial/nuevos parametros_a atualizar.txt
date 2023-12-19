@@ -1,0 +1,4 @@
+String? star_docker_local_image = "/data04/projects04/MarianaBoroni/lbbc_members/dev/local_images/secondary-analysis-star-v0.2.2-2.5.3a-40ead6e.simg"
+    String? htseq_docker_local_image = "/data04/projects04/MarianaBoroni/lbbc_members/dev/local_images/  quay.io/biocontainers/htseq:0.12.4--py37h0498b6d_2" #TODO
+
+	

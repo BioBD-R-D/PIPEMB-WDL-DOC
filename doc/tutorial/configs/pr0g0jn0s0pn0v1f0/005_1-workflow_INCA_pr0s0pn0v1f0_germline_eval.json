@@ -1,0 +1,20 @@
+{
+  "VariantStudy_INCA_v1.output_dir": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/005",
+  "VariantStudy_INCA_v1.reference_file": "/data04/tools/PIPEMB/homologacao/References/hg38bundle/PIPEMB-WDL-resources_Crab_hg38.json",
+  "VariantStudy_INCA_v1.input_is_multisample": true,
+  "VariantStudy_INCA_v1.do_preprocessing": false,
+
+  "VariantStudy_INCA_v1.germline_output_vcf_compressed": false,
+  "VariantStudy_INCA_v1.input_preprocessed_vcf_list_for_germline_vep": "/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/results/001/germline_vcfs/vcf_list.txt",
+  "VariantStudy_INCA_v1.germline_annot_with_vep": true,
+  "VariantStudy_INCA_v1.germline_vep_offline_execution": true,
+  "VariantStudy_INCA_v1.germline_vep_dir_cache":"/data04/tools/PIPEMB/homologacao/vep_cache",
+  "VariantStudy_INCA_v1.germline_vep_dir_cache_sing":"/cromwell-executions/vep_cache",
+  "VariantStudy_INCA_v1.germline_vep_assembly_name":"GRCh38",
+  "VariantStudy_INCA_v1.germline_vep_input_suffix":".vcf.gz",
+  "VariantStudy_INCA_v1.germline_vep_extra_args":"--check_existing --symbol --regulatory --sift b --polyphen b --uniprot --hgvs --numbers --domains --canonical --biotype --uniprot --tsl --gene_phenotype --af --af_1kg --af_esp --af_gnomad --pubmed --variant_class --species homo_sapiens --failed 1 --appris --biotype --mane --ccds --transcript_version --flag_pick_allele_gene --show_ref_allele",
+  "VariantStudy_INCA_v1.genotypeConcordance_truth_vcf":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz",
+  "VariantStudy_INCA_v1.genotypeConcordance_truth_vcf_index":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/Mills_and_1000G_gold_standard.indels.hg38.vcf.tbi",
+  "VariantStudy_INCA_v1.germline_evaluate_variants":true
+}
+
