@@ -1,144 +1,38 @@
 # PIPEMB-WDL
 A repository for PIPEMB-WDL workflow  for variant discovery (SNPs and INDELs) using [GATK4](https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4) and related tools. It was implemented to accomplish the [Best practices of GATK](https://gatk.broadinstitute.org/hc/en-us/articles/360035894711-About-the-GATK-Best-Practices) ,  and developed by INCA and PUC-Rio researchers. This workflow integrates pre-processing step, somatic and germline variant calling, and filtering and annotation steps. It was implemented using a [WDL](https://github.com/openwdl/wdl/blob/main/versions/1.0/SPEC.md) in its verion 1.0 and tested over [Cromwell engine](https://cromwell.readthedocs.io/en/stable/). 
 
-List of interesting links:
--	[Getting started with GATK4](https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
--	[Pipelining GATK with WDL and Cromwell](https://gatk.broadinstitute.org/hc/en-us/articles/360035889771-Pipelining-GATK-with-WDL-and-Cromwell)
--	[(How to) Execute Workflows from the gatk-workflows Git Organization](https://gatk.broadinstitute.org/hc/en-us/articles/360035530952--How-to-Execute-Workflows-from-the-gatk-workflows-Git-Organization)
--	[GATK on local HPC infrastructure](https://gatk.broadinstitute.org/hc/en-us/articles/360046877112-GATK-on-local-HPC-infrastructure)
-
 The following figure represents a conceptual overview of the PIPEMB-WDL workflow:
 
-![workflow](doc/img/pipemb_overview.png)
+![workflow](doc/img/pipemb_overview_v2.png)
+
+The steps could be grouped by three main phases: pre-processing, variant calling and the refinement and evaluation phase as if possible to see in the next figure:
+![workflow](doc/img/pipemb_overview_v2_byphases.png)
+
+
 
 The PIPEMB flow initially starts with the pre-processing of the input data. 
-Pre-processing is a common step for both germline and somatic short variant calling. After pre-processing, it is possible to execute one type of study or both. Subsequently, each study has a validation step where specific filters are performed, and finally, the resulting variants can be annotated using the [VEP](https://www.ensembl.org/info/about/index.html) and [Funcotator](https://gatk.broadinstitute.org/hc/en-us/articles/360035889931-Funcotator-Information-and-Tutorial) programs. 
-
+Pre-processing is a common step for both germline and somatic short variant calling. It could be for DNA or RNA data. After pre-processing, it is possible to execute one type of study or both. Subsequently, each study has a validation step where specific filters are performed, and finally, the resulting variants can be annotated using the [VEP](https://www.ensembl.org/info/about/index.html) and [Funcotator](https://gatk.broadinstitute.org/hc/en-us/articles/360035889931-Funcotator-Information-and-Tutorial) programs. 
 
 A component representation of the implemented workflow is shown in the following:
-![workflow](doc/img/workflow_representation.png)
+![workflow](doc/img/workflow_representation_v2.png)
 
 All the phases are integrated in a decoupled way. It is possible to execute a whole workflow including the three stages, taking the output from one and passing it as input for the next, or just starting the flow in any of them. Therefore, the implementation allows starting the execution pre-processing the reads for them call variant, or directly doing the variants call from a list of previously pre-processed files, of just filtering or annotate a list of files resulted from previous variant calling. Otherwise, the flow could contemplate only the pre-processing phase, or just only variant calling, or even just only annotation, since each stage is optional. 
 
-## Running. 
 
-As starting point **we highly recommend following** the [tutorial](doc/tutorial/Tutorial.pdf) and attending the [videos](doc/tutorial/videos). Also, this [presentation](doc/PIPEMB-WDL_INCA_PESQ_17082021_v2.pptx) will help a lot.
+## Usage.
+
+We have been configured the HPC crab environment and diployed a tutorial that could be used to test the workflow as follow:
+
+```
+sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-WDL.slurm /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TUTORIAL/configs/pr1g1_SM_F1_jn0s0pn0v1f1/001_workflow_INCA_pr1g1_SM_Fl1_jn0s0pn0v1f1pp_.json
+```
+
+The json file is where the arguments of the workflow are set. The possible arguments are explained in the section [Parameters description](#parameters-description). If the preprocessing step will be executed, an input file that list the sequences that will be analyzed is required in a _tsv_ format. The structure of this file is detailed in the section [Input file that describes sequences to be analyzed:](#input-file-that-describes-sequences-to-be-analyzed). Also, this file needs to be addressed in the parameter ```flowcell_unmapped_input_tsv ```. 
+The output directory structure is also explained in the section [Workflow output description](#workflow-output-description)
+
+**We also highly recommend read the following** [tutorial](doc/tutorial/Tutorial.pdf). Also, this [presentation](doc/PIPEMB-WDL_INCA_PESQ_17082021_v2.pptx) and [videos](doc/tutorial/videos) explain more about execution.
 
 The workflow was deployment and tested over the cluster infracture of INCA, the [HPCC-Crab](https://www.inca.gov.br/en/node/2349). 
-
-
-The basic sintaxis to execute a workflow described in WDL over Cromwell engine is:
-
-```
-java -Dconfig.file=<cromwell_file_config> -jar <cromwell_path_jar> run <wdl_file> --inputs <wofklow_input_json_file> &> <log_execution.log> &
-```
-
-As our tasks use docker containers, we use Singularity to execute them. Therefore we must set the Singularity variables before running the workflow, as follow:
-```
-SINGULARITY_CACHEDIR=$HOME/workflow/lib/cache/${USER}
-SINGULARITY_TMPDIR=/scr/tmp
-unset XDG_RUNTIME_DIR
-```
-
-The workflow could be executed directly in one node (single-node execution) or distributing the task over multiple nodes in the cluster (multi-node execution). 
-
-### single-node execution
-
-For single-node execution, we can directly use the command with the basic syntaxis. An example of real execution:
-
-```
-nohup java -Dconfig.file=cromwell-local-singularity-joblimit.conf -jar /data04/projects04/MarianaBoroni/workflow/bin/software/cromwell-49.jar run processing-for-variant-discovery-gatk4-vVM.wdl --inputs processing-for-variant-discovery-gatk4-crab.hg38.wgs.inputs.json >> console_teste_crab-hg38.txt &
-```
-
-This is a basic mode if we only want to test small workflows. To execute with tasks distribution on large scale, the multi-node mode is recommended. 
-
-### multi-node execution:
-
-For scheduling and distribute tasks in the cluster, is used Slurm. It is necessary to specify in the Cromwell config this integration and execute the main command through Slurm. To simply this, a slurm script is used (see examples in config/Executions, e.g. https://github.com/BioBD/PIPEMB-WDL/blob/main/config/Examples/pre0g0jn0s1pn1v1f1/run_workflow_INCA_g0jn0s1pn1v1f1_localimage_joblimit50_exclusiveuser_noprepr.slurm). In that script must be inserted the path of the WDL, the Crowmell jar path, and the JSON input.
-
-```
-# ----------------User vars-----------------------
-
-### cromwell config
-CONFIG=<cromwell_file_config>
-
-### jar
-JAR=<cromwell_path_jar>
-
-### workflow description
-WDL=<wdl_file>
-
-### vars description
-JSON=<wofklow_input_json_file>
-```
-
-The config files used in the examples are in (config/)
-
-```
-backend {
-  default = slurm
-
-  providers {
-    slurm {
-      actor-factory = "cromwell.backend.impl.sfs.config.ConfigBackendLifecycleActorFactory"                                                                                     
-      config {
-        concurrent-job-limit = 50
-        run-in-background = true
-        runtime-attributes = """
-        Int cpus = 14
-        String? docker
-        String? extraMount
-        String? local_image
-        """
-
-        submit = """
-            sbatch \
-              --wait \
-              -J ${job_name} \
-              -D ${cwd} \
-              -o ${out} \
-              -e ${err} \
-              ${"-c " + cpus} \
-              --wrap "/bin/bash ${script}"
-        """
-
-        submit-docker = """
-            # Ensure singularity is loaded if it's installed as a module
-            which singularity
-
-            # Submit the script to SLURM
-            sbatch \
-              --exclusive=user \
-              --wait \
-              -J ${job_name} \
-              -D ${cwd} \
-              -o ${cwd}/execution/stdout \
-              -e ${cwd}/execution/stderr \
-              ${"-c " + cpus} \
-              --wrap "singularity exec --bind ${cwd}:${docker_cwd}${extraMount} ${local_image} ${job_shell} ${script}"
-        """
-      }
-    }
-  }
-}
-```
-Command execution:
-```
-sbatch script.slurm
-```
-
-<!---We suggest starting using the examples in: https://github.com/BioBD/PIPEMB-WDL/tree/main/config/Examples/pre1g0jn0s0pn0v0f0 and https://github.com/BioBD/PIPEMB-WDL/tree/main/config/Examples/g1SMfl11jn0s0pn0v1f1 --->
-
-## Output description:
-The structure of the results in the selected directory (-	output_dir parameter) is the following:
-- **_bam_**: contains bam files resulting from preprocessing. Optional output, if it is used (do_preprocessing = true, default). 
-- **_germline/somatic_vcfs_**: contains the vcf files resulting from germline/somatic variants call (HaplotypeCaller + CNNScoreVariants + FIlterVariantTranches / Program Mutect2 + FilterMutectCalls). Note: In the case of somatic, the filename has a T in front of it, but the truth is a vcf with the result for normal and tumor sample from the same sample. Optional output, if it is used (do_<germline/somatic>_short_variant_discovering = true) .
-- **_germline/somatic_PASS_**: filtered vcf, contains only those variants that have "PASS" in the filter column. Optional output, if variant call or annotation is set. 
-- **_germline/somatic_vcfs_merged_**: Contains the file final_vcf_all_samples.vcf. It is a multisample vcf, containg the variants present in the germline/somatic_PASS folder in a single file. Optional output, if variant call or annotation is set, and it is a multisample study.
--** _germline/somatic_funcotator_annot_**: Contains the file  final_vcf_all_samples annotated by Funcotator. Optional output, if it is used (germline/somatic_annot_with_funcotator = true)
-- **_germline/somatic_funcotator_indep_samples_annot_**: Contains a one file for each sample annotated by Funcotator using VCF format. Optional output, if it is used (germline/somatic_annot_with_funcotator_add_allsamples = true)
-- **_germline/somatic_funcotator_maf_annot_**: Contains a one file for each sample annotated by Funcotator using MAF format. Optional output, if it is used (germline/somatic_annot_with_funcotator_add_maf = true)
-- **_germline/somatic_vep_annot_**: Contains file  final_vcf_all_samples annotated by Funcotator (if defined) and by VEP. Final file resulting from the workflow. Optional output, if it is used (germline/somatic_annot_with_vep = true)
 
 ## Input file that describes sequences to be analyzed:
 
@@ -401,6 +295,127 @@ In the following are the parameter to defined the genomic intervals lists in eac
     - ```joingenot_omni_resource_vcf```, ```joingenot_omni_resource_vcf_index```
     - ```joingenot_one_thousand_genomes_resource_vcf```, ```joingenot_one_thousand_genomes_resource_vcf_index```
 
+## Workflow output description:
+The structure of the results in the selected directory (-	output_dir parameter) is the following:
+- **_bam_**: contains bam files resulting from preprocessing. Optional output, if it is used (do_preprocessing = true, default). 
+- **_germline/somatic_vcfs_**: contains the vcf files resulting from germline/somatic variants call (HaplotypeCaller + CNNScoreVariants + FIlterVariantTranches / Program Mutect2 + FilterMutectCalls). Note: In the case of somatic, the filename has a T in front of it, but the truth is a vcf with the result for normal and tumor sample from the same sample. Optional output, if it is used (do_<germline/somatic>_short_variant_discovering = true) .
+- **_germline/somatic_PASS_**: filtered vcf, contains only those variants that have "PASS" in the filter column. Optional output, if variant call or annotation is set. 
+- **_germline/somatic_vcfs_merged_**: Contains the file final_vcf_all_samples.vcf. It is a multisample vcf, containg the variants present in the germline/somatic_PASS folder in a single file. Optional output, if variant call or annotation is set, and it is a multisample study.
+-** _germline/somatic_funcotator_annot_**: Contains the file  final_vcf_all_samples annotated by Funcotator. Optional output, if it is used (germline/somatic_annot_with_funcotator = true)
+- **_germline/somatic_funcotator_indep_samples_annot_**: Contains a one file for each sample annotated by Funcotator using VCF format. Optional output, if it is used (germline/somatic_annot_with_funcotator_add_allsamples = true)
+- **_germline/somatic_funcotator_maf_annot_**: Contains a one file for each sample annotated by Funcotator using MAF format. Optional output, if it is used (germline/somatic_annot_with_funcotator_add_maf = true)
+- **_germline/somatic_vep_annot_**: Contains file  final_vcf_all_samples annotated by Funcotator (if defined) and by VEP. Final file resulting from the workflow. Optional output, if it is used (germline/somatic_annot_with_vep = true)
+
+
+## Testing bed
+
+This [file](doc/tutorial/configs/testing%20bed_tutorial.xlsx) contains the testing bed that anyone could replay to practice the use of the workflow.
+
+## Running details for advantaged. 
+
+The basic sintaxis to execute a workflow described in WDL over Cromwell engine is:
+
+```
+java -Dconfig.file=<cromwell_file_config> -jar <cromwell_path_jar> run <wdl_file> --inputs <wofklow_input_json_file> &> <log_execution.log> &
+```
+
+As our tasks use docker containers, we use Singularity to execute them. Therefore we must set the Singularity variables before running the workflow, as follow:
+```
+SINGULARITY_CACHEDIR=$HOME/workflow/lib/cache/${USER}
+SINGULARITY_TMPDIR=/scr/tmp
+unset XDG_RUNTIME_DIR
+```
+
+The workflow could be executed directly in one node (single-node execution) or distributing the task over multiple nodes in the cluster (multi-node execution). 
+
+### single-node execution
+
+For single-node execution, we can directly use the command with the basic syntaxis. An example of real execution:
+
+```
+nohup java -Dconfig.file=cromwell-local-singularity-joblimit.conf -jar /data04/projects04/MarianaBoroni/workflow/bin/software/cromwell-49.jar run processing-for-variant-discovery-gatk4-vVM.wdl --inputs processing-for-variant-discovery-gatk4-crab.hg38.wgs.inputs.json >> console_teste_crab-hg38.txt &
+```
+
+This is a basic mode if we only want to test small workflows. To execute with tasks distribution on large scale, the multi-node mode is recommended. 
+
+### multi-node execution:
+
+For scheduling and distribute tasks in the cluster, is used Slurm. It is necessary to specify in the Cromwell config this integration and execute the main command through Slurm. To simply this, a slurm script is used (see examples in config/Executions, e.g. https://github.com/BioBD/PIPEMB-WDL/blob/main/config/Examples/pre0g0jn0s1pn1v1f1/run_workflow_INCA_g0jn0s1pn1v1f1_localimage_joblimit50_exclusiveuser_noprepr.slurm). In that script must be inserted the path of the WDL, the Crowmell jar path, and the JSON input.
+
+```
+# ----------------User vars-----------------------
+
+### cromwell config
+CONFIG=<cromwell_file_config>
+
+### jar
+JAR=<cromwell_path_jar>
+
+### workflow description
+WDL=<wdl_file>
+
+### vars description
+JSON=<wofklow_input_json_file>
+```
+
+The config files used in the examples are in (config/)
+
+```
+backend {
+  default = slurm
+
+  providers {
+    slurm {
+      actor-factory = "cromwell.backend.impl.sfs.config.ConfigBackendLifecycleActorFactory"                                                                                     
+      config {
+        concurrent-job-limit = 50
+        run-in-background = true
+        runtime-attributes = """
+        Int cpus = 14
+        String? docker
+        String? extraMount
+        String? local_image
+        """
+
+        submit = """
+            sbatch \
+              --wait \
+              -J ${job_name} \
+              -D ${cwd} \
+              -o ${out} \
+              -e ${err} \
+              ${"-c " + cpus} \
+              --wrap "/bin/bash ${script}"
+        """
+
+        submit-docker = """
+            # Ensure singularity is loaded if it's installed as a module
+            which singularity
+
+            # Submit the script to SLURM
+            sbatch \
+              --exclusive=user \
+              --wait \
+              -J ${job_name} \
+              -D ${cwd} \
+              -o ${cwd}/execution/stdout \
+              -e ${cwd}/execution/stderr \
+              ${"-c " + cpus} \
+              --wrap "singularity exec --bind ${cwd}:${docker_cwd}${extraMount} ${local_image} ${job_shell} ${script}"
+        """
+      }
+    }
+  }
+}
+```
+Command execution:
+```
+sbatch script.slurm
+```
+
+<!---We suggest starting using the examples in: https://github.com/BioBD/PIPEMB-WDL/tree/main/config/Examples/pre1g0jn0s0pn0v0f0 and https://github.com/BioBD/PIPEMB-WDL/tree/main/config/Examples/g1SMfl11jn0s0pn0v1f1 --->
+
+
 ## Tips:
 ### FilterVariantTranches User error:
 
@@ -434,4 +449,8 @@ VariantRecalibrator performs the first pass in a two-stage process called Varian
 The error suggests reducing the max-gaussians. It is possible to had to end up using max-gaussian to 1.
 According to some experiences commented in the GATK forum, this error will occur when the read data amount is just not big enough. Then will be necessary to try to bring in more samples or a larger genomic area for VQSR, or use another filter as CNN. (https://gatk.broadinstitute.org/hc/en-us/community/posts/360073061351-VQSR-positive-training-model-failed-to-converge)
 
-
+## List of interesting links from GATK:
+-	[Getting started with GATK4](https://gatk.broadinstitute.org/hc/en-us/articles/360036194592-Getting-started-with-GATK4)
+-	[Pipelining GATK with WDL and Cromwell](https://gatk.broadinstitute.org/hc/en-us/articles/360035889771-Pipelining-GATK-with-WDL-and-Cromwell)
+-	[(How to) Execute Workflows from the gatk-workflows Git Organization](https://gatk.broadinstitute.org/hc/en-us/articles/360035530952--How-to-Execute-Workflows-from-the-gatk-workflows-Git-Organization)
+-	[GATK on local HPC infrastructure](https://gatk.broadinstitute.org/hc/en-us/articles/360046877112-GATK-on-local-HPC-infrastructure)
