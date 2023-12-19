@@ -100,6 +100,12 @@ Default values for these parameters cover the last images available until march 
 
 A group of legacy values is used to set the disk size for some tools executions during the pre-processing. They are: flowcell_small_disk, flowcell_medium_disk, agg_small_disk, agg_medium_disk, agg_large_disk. Default values are set in the main WDL. However, they were not used in our executions because the backend used is docker.
 
+##### Additional parameters to execute data **pre-processing for RNA-seq**:
+-	```rna_seq_analysis``` -- specifies whether the data pre-processing subworkflow will be executed for RNA-seq. Boolean value, default value: false.
+-	```rna_seq_analysis_annotationsGTF``` -- specifies the annotation file for start alignment. The default value:/databases/H_sapiens/Ensembl/GRCh38/gtf/Homo_sapiens.GRCh38.83.gtf
+-	```rna_splitncigar_temp_dir``` -- temporal directory to for split cigar task execution
+-	```rna_zippedStarReferences``` -- specifies the zipped Star reference generated in the Star first step. It avoid to compute the _StarGenerateReferences_.
+
 #### Additional parameters to execute **germline** study 
 -	```input_is_multisample ```-- specifies whether the input is multisample. Boolean value, default value: false.
 - ```input_preprocessed_bams_list_for_germline ```-- list of preprocessed bams. If do_preprocessing = false, them a list of preprocessed bams and their indexes must be provided.
