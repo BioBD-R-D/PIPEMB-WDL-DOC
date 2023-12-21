@@ -30,7 +30,7 @@ sbatch /data04/tools/PIPEMB/homologacao/PIPEMB-WDL/DEV/exec/run_workflow_PIPEMB-
 The json file is where the arguments of the workflow are set. The possible arguments are explained in the section [Parameters description](#parameters-description). If the preprocessing step will be executed, an input file that list the sequences that will be analyzed is required in a _tsv_ format. The structure of this file is detailed in the section [Input file that describes sequences to be analyzed:](#input-file-that-describes-sequences-to-be-analyzed). Also, this file needs to be addressed in the parameter ```flowcell_unmapped_input_tsv ```. 
 The output directory structure is also explained in the section [Workflow output description](#workflow-output-description)
 
-**We also highly recommend read the following** [tutorial](doc/tutorial/Tutorial.pdf). Also, this [presentation](doc/PIPEMB-WDL_INCA_PESQ_17082021_v2.pptx) and [videos](doc/tutorial/videos) explain more about execution.
+**We also highly recommend read the following** [tutorial](doc/tutorial/Tutorial.pdf). Also, this [presentation](doc/PIPEMB-WDL_INCA_PESQ_17082021_v2.pptx) and the following videos ([video1](doc/tutorial/videos/Part1_INCA.mp4),[video2](doc/tutorial/videos/Part2_INCA.mp4),[video3](doc/tutorial/videos/Part3_INCA.mp4), [video4](doc/tutorial/videos/Part4_INCA.mp4)) explain more about execution.
 
 The workflow was deployment and tested over the cluster infracture of INCA, the [HPCC-Crab](https://www.inca.gov.br/en/node/2349). 
 
@@ -303,6 +303,7 @@ In the following are the parameter to defined the genomic intervals lists in eac
 
 ## Workflow output description:
 The structure of the results in the selected directory (-	output_dir parameter) is the following:
+- **_readQualitycontrol/fastqc_**: contains the output of the fastqc quality analysis.
 - **_bam_**: contains bam files resulting from preprocessing. Optional output, if it is used (do_preprocessing = true, default). 
 - **_germline/somatic_vcfs_**: contains the vcf files resulting from germline/somatic variants call (HaplotypeCaller + CNNScoreVariants + FIlterVariantTranches / Program Mutect2 + FilterMutectCalls). Note: In the case of somatic, the filename has a T in front of it, but the truth is a vcf with the result for normal and tumor sample from the same sample. Optional output, if it is used (do_<germline/somatic>_short_variant_discovering = true) .
 - **_germline/somatic_PASS_**: filtered vcf, contains only those variants that have "PASS" in the filter column. Optional output, if variant call or annotation is set. 
