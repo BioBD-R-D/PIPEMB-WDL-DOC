@@ -11,6 +11,7 @@
   "VariantStudy_INCA_v1.input_is_multisample": false,
   "VariantStudy_INCA_v1.input_is_fastq": false,
   "VariantStudy_INCA_v1.input_is_pairend": false,
+  "VariantStudy_INCA_v1.bam_input_source_is_pairend": true,
   "VariantStudy_INCA_v1.execute_with_spark": false,
 
 

@@ -11,6 +11,7 @@
   "VariantStudy_INCA_v1.input_is_multisample": false,
   "VariantStudy_INCA_v1.input_is_fastq": false,
   "VariantStudy_INCA_v1.input_is_pairend": false,
+  "VariantStudy_INCA_v1.bam_input_source_is_pairend": true,
   "VariantStudy_INCA_v1.execute_with_spark": false,
 
 
@@ -28,7 +29,7 @@
 
   "VariantStudy_INCA_v1.germline_annot_with_funcotator": true,
   "VariantStudy_INCA_v1.germline_annot_with_funcotator_add_allsamples": true,
-  "VariantStudy_INCA_v1.germline_annot_with_funcotator_add_maf": true,
+  "VariantStudy_INCA_v1.germline_annot_with_funcotator_add_maf": false,
   "VariantStudy_INCA_v1.germline_funco_reference_version":"hg19",
   "VariantStudy_INCA_v1.germline_funco_dir_cache":"/data04/tools/PIPEMB/homologacao/fucotator_source_2020/funcotator_dataSources.v1.6.20190124s"
 

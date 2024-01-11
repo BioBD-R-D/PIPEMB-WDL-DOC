@@ -9,6 +9,7 @@
   "VariantStudy_INCA_v1.input_is_fastq": false,
   "VariantStudy_INCA_v1.input_is_pairend": false,
   "VariantStudy_INCA_v1.execute_with_spark": false,
+  "VariantStudy_INCA_v1.bam_input_source_is_pairend": true,
   "VariantStudy_INCA_v1.rna_seq_analysis_annotationsGTF": "/home/earmas/lbbc_members/data/reference/gencode.v43.chr_patch_hapl_scaff.basic.annotation.gtf",
   "VariantStudy_INCA_v1.rna_splitncigar_temp_dir":"/data04/tools/PIPEMB/homologacao/PIPEMB-WDL/TESTING/execution/outputs/helloworld/preprocessing_rna/fixed_splitcigar",
   "VariantStudy_INCA_v1.rna_zippedStarReferences":"/data04/tools/PIPEMB/homologacao/References/hg38bundle/star_reference_v43_gencode/star-HUMAN-refs.tar.gz"
